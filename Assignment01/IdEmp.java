@@ -37,6 +37,12 @@ class Employee{
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Employee [empid=" + empid + ", name=" + name + "]";
+	}
 	
 	
 }
@@ -47,16 +53,45 @@ public class IdEmp {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("enter numbers of employee: ");
-		int n = sc.nextInt();
-		Employee e = new Employee();
+		Employee e = new Employee(1,"Tushar");
+		Employee e1 = new Employee(2,"Aashish");
 		
-		for(int i =1;i<=n ;i++ ) {
-			e.setEmpid(i);
-			System.out.println("enter name for id " + i);
-			String name = sc.next();
-			e.setName(name);
-		}
+		Employee arr[] = {e,e1};
+		boolean flag = false;
+		int choice;
+		do {
+			System.out.println("0. Exit");
+			System.out.println("1. Search by id:");
+			System.out.println("2. search by name: ");
+			choice = sc.nextInt();
+			
+			switch(choice) {
+			case 1: System.out.println("enter id to be searched: ");
+					int id = sc.nextInt();
+					for(int i = 0; i<arr.length ;i++) {
+						if(arr[i].getEmpid() == id) {
+							flag = true;
+							System.out.println(arr[i].toString());
+						}
+					}
+					if(flag = false)
+						System.out.println("no Employee found");
+					break;
+			case 2: System.out.println("enter name to be searched: ");
+					String name = sc.next();
+					for(int i =0 ; i<arr.length;i++) {
+						flag = true;
+						if(arr[i].getName().equalsIgnoreCase(name)) {
+							System.out.println(arr[i].toString());
+						}
+					}
+					if(flag = false)
+						System.out.println("no Employee found");
+					break;
+			case 0: System.out.println("bye");
+			
+			}
+		}while(choice != 0);
 
 	}
 
